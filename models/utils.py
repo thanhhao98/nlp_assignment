@@ -128,31 +128,39 @@ def priority(t):
 
 def searchInDb(query):
     findInfo = query[0][1]
-    # if findInfo == '?t'
-    print(findInfo)
+    if findInfo == '?t':
+        id = ''
+        for i in query:
+            if i[0] == 'BUS':
+                id = i[1]
+                break
+        q_t = [q for q in query if q[0] in ['RUN-TIME']]
+        if len(q_t) and '?l' not in q_t[0]:
+            query = [q for q in query if q[0] not in ['ATIME', 'DTIME']]
+        elif len(q_t):
+            query = [q for q in query if q[0] not in ['RUN-TIME']]
+        for i, q in enumerate(query):
+            for j, v in enumerate(q):
+                if v == '?b':
+                    query[i][j] = id
     query = query[1:]
+    query = [q for q in query if findInfo in q]
     db = loadDb()
     result = []
-    print("##############")
     for q in query:
         candidate = set()
         for d in db:
             if len(q) == len(d):
                 isMatch = True
                 for i, j in zip(q, d):
-                    print((i,j))
                     if i[0] != '?' and i != j:
-                        print('false')
                         isMatch = False
                         break
-                print()
                 if isMatch:
-                    print(d)
                     for i, j in zip(q, d):
                         if i == findInfo:
                             candidate.add(j)
         result.append(candidate)
-    print(result)
     return reduce(lambda a, b: a.intersection(b), result)
 
 

@@ -77,6 +77,7 @@ RELATIONS = {
         ['s_loc', 't']
     ],
     'ARRIVE_TIME': [
+        ['prn_t', 't'],
         ['loc', 't']
     ],
 }
