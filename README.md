@@ -3,6 +3,7 @@
 Bài tập về phát triển hỏi đáp trên cơ sở dữ liệu về thời gian, địa điểm đi về giữa các chuyến xe.
 ## 2. Các thành phần trong project
 Phân cấp của project như sau:
+```
     |- main.py
     |- models/   
                 |- utils.py
@@ -15,6 +16,7 @@ Phân cấp của project như sau:
                 |- output_b.txt
                 |- output_c.txt
                 |- output_d.txt
+```
 trong đó main.py là entrypoint thực thi chương trình; models chứa các model, function cần thiết, dictionary cần thiết; input chưa database và input cho chương trình; output chứa các file kết quả của chương trình.
 
 ## 3. Cách chạy
