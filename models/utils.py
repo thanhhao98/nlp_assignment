@@ -164,12 +164,12 @@ def searchInDb(query):
     return reduce(lambda a, b: a.intersection(b), result)
 
 
-def printDependences(dependences):
+def formatDependences(dependences):
     result = []
     for i in dependences:
         result.append('('+i[0] + ' ' + i[1][-1] + '{' + i[2][-1]+'})')
     result = '\n'.join(result)
-    print(result)
+    return result
 
 
 def convertLocation(location):
