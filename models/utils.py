@@ -8,6 +8,7 @@ from .dictionary import (
 )
 import re
 from functools import reduce
+from copy import deepcopy
 
 
 def convertDict1(key, values):
@@ -19,7 +20,7 @@ def convertDict2(key, values):
 
 
 def parsePartern(input):
-    parterns = [convertDict1(k, PARTERNS[k]) for k in PARTERNS]
+    parterns = [convertDict1(k, deepcopy(PARTERNS[k])) for k in PARTERNS]
     parterns = reduce(lambda x, y: x+y, parterns, [])
     keyParterns = [p[0] for p in parterns]
     s = input.lower().strip()
@@ -62,7 +63,7 @@ def handleMapTokens(mapTokens, parterns, keyParterns):
 
 
 def handelLogicalForm(parterns):
-    relations = [convertDict2(k, RELATIONS[k]) for k in RELATIONS]
+    relations = [convertDict2(k, deepcopy(RELATIONS[k])) for k in RELATIONS]
     relations = reduce(lambda x, y: x+y, relations, [])
     parternType = [i[1] for i in parterns]
     result = []
@@ -88,7 +89,7 @@ def handelLogicalForm(parterns):
 def handleQueryForm(logicalForm):
     result = []
     for l in logicalForm:
-        mapped = MAP_RELATION_TO_DB[l[0]]
+        mapped = deepcopy(MAP_RELATION_TO_DB[l[0]])
         for i, m in enumerate(mapped):
             for j, v in enumerate(m):
                 if v[0] == '*':

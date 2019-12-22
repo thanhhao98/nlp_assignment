@@ -16,6 +16,7 @@ def main():
     output_c = []
     output_d = []
     for s in sentences:
+        s = s.strip()
         output_a.append('Sentences'.center(100, ' '))
         output_b.append('Sentences'.center(100, ' '))
         output_c.append('Sentences'.center(100, ' '))
@@ -25,6 +26,8 @@ def main():
         output_c.append(s)
         output_d.append(s)
 
+        print('##############################################')
+        print(s)
         parterns = parsePartern(s)
         output_a.append('tokens'.center(100, '~'))
         output_a.append(str(parterns))
@@ -41,6 +44,7 @@ def main():
         result = searchInDb(query)
         output_d.append('result'.center(100, '~'))
         output_d.append(str(result))
+        print(result)
 
         output_a.append(''.center(100, '#'))
         output_b.append(''.center(100, '#'))
